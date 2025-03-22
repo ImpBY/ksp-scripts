@@ -1,0 +1,5 @@
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
+IF NOT runScript("autorun.ks") {
+IF NOT runCraft(). {
+  rcsOff(). sasOn(). pOut("Manual start next program").
+}}
