@@ -18,9 +18,9 @@ FUNCTION stopTranslation {
 }
 
 FUNCTION toggleRCS {
-  PARAMETER r IS NOT RCS.
+  PARAMETER rflag IS NOT RCS.
   stopTranslation().
-  SET RCS TO r.
+  SET RCS TO rflag.
   WAIT 0.
 }
 
