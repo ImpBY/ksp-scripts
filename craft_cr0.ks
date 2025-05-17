@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 LOCAL AZIMUT IS 90.
 LOCK PANGL TO 90.
@@ -8,8 +8,8 @@ LOCAL Stage1FinalPitch IS 60.
 LOCAL TurnTime IS 120.
 
 FOR f IN LIST(
-  "lib_launch_common.ks",
-  "lib_steer.ks"
+  "lib_launch_common.ks", // #include lib_launch_common
+  "lib_steer.ks" // #include lib_steer
 ) { runScript(f,debug()). }
 
 WAIT 10.

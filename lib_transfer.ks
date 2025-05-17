@@ -1,12 +1,12 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_orbit.ks",
-  "lib_burn.ks",
-  "lib_orbit_match.ks",
-  "lib_runmode.ks",
-  "lib_hoh.ks",
-  "lib_ca.ks"
+  "lib_orbit.ks", // #include lib_orbit
+  "lib_burn.ks", // #include lib_burn
+  "lib_orbit_match.ks", // #include lib_orbit_match
+  "lib_runmode.ks", // #include lib_runmode
+  "lib_hoh.ks", // #include lib_hoh
+  "lib_ca.ks" // #include lib_ca
 ) { runScript(f,debug()). }
 
 GLOBAL CURRENT_BODY IS BODY.

@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 GLOBAL RM_FN IS "rm.ks".
 GLOBAL RM_RM IS -1.

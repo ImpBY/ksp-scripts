@@ -1,8 +1,8 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_burn.ks",
-  "lib_steer.ks"
+  "lib_burn.ks", // #include lib_burn
+  "lib_steer.ks" // #include lib_steer
 ) { runScript(f,debug()). }
 
 FUNCTION getBSOheight {

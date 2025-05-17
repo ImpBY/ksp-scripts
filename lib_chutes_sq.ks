@@ -1,6 +1,6 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
-runScript("lib_parts.ks",debug()).
+runScript("lib_parts.ks",debug()). // #include lib_parts
 
 GLOBAL CHUTE_LIST IS LIST().
 

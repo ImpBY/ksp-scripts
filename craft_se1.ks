@@ -1,3 +1,5 @@
+@LAZYGLOBAL OFF. // #include init
+
 runScript("lib_chutes.ks").
 steerTo().
 pOut("3").

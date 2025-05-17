@@ -1,6 +1,7 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
+
 FOR f IN LIST(
-  "lib_orbit.ks"
+  "lib_orbit.ks" // #include lib_orbit
 ) { runScript(f,debug()). }
 
 FUNCTION nodeHohmann {

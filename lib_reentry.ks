@@ -1,12 +1,12 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_chutes.ks",
-  "lib_parts.ks",
-  "lib_runmode.ks",
-  "lib_node.ks",
-  "lib_steer.ks",
-  "lib_orbit.ks"
+  "lib_chutes.ks", // #include lib_chutes
+  "lib_parts.ks", // #include lib_parts
+  "lib_runmode.ks", // #include lib_runmode
+  "lib_node.ks", // #include lib_node
+  "lib_steer.ks", // #include lib_steer
+  "lib_orbit.ks" // #include lib_orbit
 ) { runScript(f,debug()). }
 
 GLOBAL KSC_LAT IS -74.5576222763096 -26.

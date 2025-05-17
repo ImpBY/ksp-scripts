@@ -1,10 +1,18 @@
-IF NOT findPath("start_edit") {
-  GLOBAL f IS FALSE.
-  edit CRAFT_FILE_INIT.
-  pOut("AG1 to continue after edit").
-  ON AG1 { SET f TO TRUE. }
-  WAIT UNTIL f.
-  COPYPATH(CRAFT_FILE_INIT,"0:/craft_" + SHIP:NAME + "_init.ks").
-  store("","start_edit").
-}
-runScript("ship_cargo",debug()).
+@LAZYGLOBAL OFF. // #include init
+
+GLOBAL NEW_NAME IS "Cargo1".
+// GLOBAL ORBIT_AP IS 100000.
+// GLOBAL ORBIT_PE IS 100000.
+GLOBAL ORBIT_LOW IS 80000. //MAX(BODY:ATM:HEIGHT * 1.05, ORBIT_PE-100000).
+// GLOBAL ORBIT_LAN IS -1.
+// GLOBAL ORBIT_INC IS 0.
+// GLOBAL ORBIT_W IS -1.
+// GLOBAL ORBIT_DIR IS -1.
+GLOBAL SHIP_TWR IS 2.0.
+GLOBAL ANG_PREC IS 0.2.
+GLOBAL ALT_PREC IS 1.0.
+GLOBAL STEER_SUN IS TRUE.
+
+rcsOn().
+sysUpdate(NEW_NAME).
+runScript("ship_cargo.ks",debug()).

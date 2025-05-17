@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. SWITCH TO 1. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 GLOBAL SHIP_WARP_ALLOW IS FALSE.
 GLOBAL mission_end_mode IS 888.
@@ -15,7 +15,7 @@ IF rm < 0 {
   runMode(801,99).
 
 } ELSE IF MOD(rm,10) = 9 AND rm > 800 AND rm < 999 {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Error state. Hit abort to recover (mode " + abortMode() + ").").
   steerSun().
   WAIT UNTIL MOD(runMode(),10) <> 9.
@@ -34,19 +34,19 @@ IF rm < 0 {
   ELSE { runMode(804,801). }
 
 } ELSE IF rm = 804 {
-  runScript("lib_rcs_burn.ks",debug()).
+  runScript("lib_rcs_burn.ks",debug()). // #include lib_rcs_burn
   IF rcsExecNode() { runMode(801). }
   ELSE { runMode(809,801). }
 
 } ELSE IF rm = 805 {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Mission complete. Hit abort to retry (mode " + abortMode() + ").").
   pOut("Start steering to Sun").
   steerSun().
   runMode(807).
   
 } ELSE IF rm = 806 {
-  runScript("lib_ant.ks",debug()).
+  runScript("lib_ant.ks",debug()). // #include lib_ant
   pOut("Low EC power").
   doAnt(FALSE).
   steerOff().
@@ -57,7 +57,7 @@ IF rm < 0 {
   WAIT 1.
 
 } ELSE IF rm = 808 {
-  runScript("lib_ant.ks",debug()).
+  runScript("lib_ant.ks",debug()). // #include lib_ant
   pOut("EC Power ok").
   doAnt().
   steerSun().

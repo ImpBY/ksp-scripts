@@ -1,8 +1,9 @@
-@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
-runScript("lib_chutes.ks",debug()).
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
+
+runScript("lib_chutes.ks",debug()). // #include lib_chutes
 UNTIL FALSE {
   FOR m IN CHUTE_LIST {
-    pOut(modFieldGet("раскрытие",m)).
+    pOut(modFieldGet("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",m)).
     pOut(chuteStatus(m)).
   }
   WAIT 1.

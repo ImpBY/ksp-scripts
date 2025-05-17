@@ -1,11 +1,11 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_steer.ks",
-  "lib_burn.ks",
-  "lib_runmode.ks",
-  "lib_orbit.ks",
-  "lib_lander_common.ks"
+  "lib_steer.ks", // #include lib_steer
+  "lib_burn.ks", // #include lib_burn
+  "lib_runmode.ks", // #include lib_runmode
+  "lib_orbit.ks", // #include lib_orbit
+  "lib_lander_common.ks" // #include lib_lander_common
 ) { runScript(f,debug()). }
 
 GLOBAL LND_LAZ IS 0.

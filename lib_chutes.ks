@@ -1,4 +1,7 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
+
+// #include lib_chutes_far
+// #include lib_chutes_sq
 
 IF findPath("lib_chutes_far.ks") {
   runScript("lib_chutes_far.ks",debug()).

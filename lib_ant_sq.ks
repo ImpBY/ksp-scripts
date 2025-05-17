@@ -1,6 +1,6 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
-runScript("lib_parts.ks",debug()).
+runScript("lib_parts.ks",debug()). // #include lib_parts
 
 GLOBAL ANT_MOD IS "ModuleDeployableAntenna".
 GLOBAL antStatus IS partModFieldGet@:BIND("статус",ANT_MOD).

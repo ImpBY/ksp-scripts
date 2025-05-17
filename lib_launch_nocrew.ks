@@ -1,7 +1,7 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_launch_common.ks"
+  "lib_launch_common.ks" // #include lib_launch_common
 ) { runScript(f,debug()). }
 
 FUNCTION doLaunch {

@@ -1,7 +1,8 @@
-@LAZYGLOBAL OFF. SWITCH TO 1. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
+
 FOR f IN LIST(
-  "lib_orbit_change.ks",
-  "lib_orbit_match.ks"
+  "lib_orbit_change.ks", // #include lib_orbit_change
+  "lib_orbit_match.ks" // #include lib_orbit_match
 ) { runScript(f,debug()). }
 
 GLOBAL NEW_NAME IS "ScanKerbinLow2".
@@ -27,7 +28,7 @@ runCraftInit().
 UNTIL runMode() = 99 {
 LOCAL rm IS runMode().
 IF rm < 0 {
-  IF NEW_NAME <> "" { shipUpdate(NEW_NAME). }
+  IF NEW_NAME <> "" { sysUpdate(NEW_NAME). }
   store("runScript(" + CHAR(34) + CRAFT_FILE_RUN + CHAR(34) + "," + debug() + ").","autorun.ks").
   warpStatus(SHIP_WARP_ALLOW).
   runMode(1,99).

@@ -1,8 +1,8 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_orbit.ks",
-  "lib_burn.ks"
+  "lib_orbit.ks", // #include lib_orbit
+  "lib_burn.ks" // #include lib_burn
 ) { runScript(f,debug()). }
 
 FUNCTION changeOrbit {

@@ -1,6 +1,7 @@
-@LAZYGLOBAL OFF.SWITCH TO 1. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
+
 FOR f IN LIST(
-"lib_ant.ks"
+"lib_ant.ks" // #include lib_ant
 ) { runScript(f,debug()). }
 
 doAnt().

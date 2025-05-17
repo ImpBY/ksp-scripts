@@ -1,8 +1,8 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_rcs.ks",
-  "lib_steer.ks"
+  "lib_rcs.ks", // #include lib_rcs
+  "lib_steer.ks" // #include lib_steer
 ) { runScript(f,debug()). }
 
 GLOBAL DOCK_VEL IS 1.

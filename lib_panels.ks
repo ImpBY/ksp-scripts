@@ -1,6 +1,6 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
-runScript("lib_parts.ks",debug()).
+runScript("lib_parts.ks",debug()). // #include lib_parts
 
 GLOBAL PANELS_MOD IS "ModuleDeployableSolarPanel".
 GLOBAL panelsActivate IS partEvent@:BIND("развернуть солнечную панель",PANELS_MOD).

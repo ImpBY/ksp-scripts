@@ -1,11 +1,12 @@
-@LAZYGLOBAL OFF. SWITCH TO 1. IF NOT EXISTS("1:/init.ks") { RUNPATH("0:/init_select.ks"). }. RUNONCEPATH("1:/init.ks").
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
+
 FOR f IN LIST(
-  "lib_launch_crew.ks",
-  "lib_reentry.ks",
-  "lib_transfer.ks",
-  "lib_rendezvous.ks",
-  "lib_orbit_match.ks",
-  "lib_orbit_change.ks"
+  "lib_launch_crew.ks", // #include lib_launch_crew
+  "lib_reentry.ks", // #include lib_reentry
+  "lib_transfer.ks", // #include lib_transfer
+  "lib_rendezvous.ks", // #include lib_rendezvous
+  "lib_orbit_match.ks", // #include lib_orbit_match
+  "lib_orbit_change.ks" // #include lib_orbit_change
 ) { runScript(f,debug()). }
 
 GLOBAL ORBIT_LOW IS MAX(BODY:ATM:HEIGHT * 1.05, 8000).

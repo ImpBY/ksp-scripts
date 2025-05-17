@@ -1,9 +1,9 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_launch_common.ks",
-  "lib_chutes.ks",
-  "lib_parts.ks"
+  "lib_launch_common.ks", // #include lib_launch_common
+  "lib_chutes.ks", // #include lib_chutes
+  "lib_parts.ks" // #include lib_parts
 ) { runScript(f,debug()). }
 
 GLOBAL LCH_LES_ALT IS BODY:ATM:HEIGHT * 0.62.

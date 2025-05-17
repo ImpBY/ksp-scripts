@@ -1,13 +1,13 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_burn.ks",
-  "lib_steer.ks",
-  "lib_orbit.ks",
-  "lib_orbit_tools.ks",
-  "lib_ant.ks",
-  "lib_panels.ks",
-  "lib_runmode.ks"
+  "lib_burn.ks", // #include lib_burn
+  "lib_steer.ks", // #include lib_steer
+  "lib_orbit.ks", // #include lib_orbit
+  "lib_orbit_tools.ks", // #include lib_orbit_tools
+  "lib_ant.ks", // #include lib_ant
+  "lib_panels.ks", // #include lib_panels
+  "lib_runmode.ks" // #include lib_runmode
 ) { runScript(f,debug()). }
 
 GLOBAL OPT_TWR IS 2.0.
@@ -333,19 +333,10 @@ FUNCTION steerLaunch {
   steerTo({ RETURN LCH_VEC. }).
 }
 
-FUNCTION countDown {
-  RETURN 1.
-  hudMsg("10...").
-  WAIT 1.
-  hudMsg("9...").
-  WAIT 1.
-  hudMsg("8...").
-  WAIT 1.
-  hudMsg("7...").
-  WAIT 1.
-  hudMsg("6...").
-  WAIT 1.
-  hudMsg("5...").
-  WAIT 1.
-  hudMsg("4...").
+FUNCTION countdown {
+  FROM {LOCAL i IS 10.} UNTIL i = 0 STEP {SET i TO i - 1.} DO {
+    PRINT i.
+    WAIT 1.
+  }
+  PRINT "start".
 }

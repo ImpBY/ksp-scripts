@@ -1,12 +1,12 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_node.ks"
+  "lib_node.ks" // #include lib_node
 ) { runScript(f,debug()). }
 
 FUNCTION calcTa {
-  PARAMETER a, e, r.
-  LOCAL inv IS ((a * (1 - e^2)) - r)/ (e * r).
+  PARAMETER a, e, r1.
+  LOCAL inv IS ((a * (1 - e^2)) - r1)/ (e * r1).
   IF ABS(inv) > 1 {
     hudMsg("ERROR: Invalid ARCCOS() in calcTa(). Rebooting in 5s.").
     WAIT 5. REBOOT.
@@ -21,9 +21,9 @@ FUNCTION velAt {
 
 FUNCTION posAt {
   PARAMETER c, u_time.
-  LOCAL b IS ORBITAT(c,u_time):BODY.
+  LOCAL b IS ORBITAT(c, u_time):BODY.
   LOCAL p IS POSITIONAT(c, u_time).
-  IF b <> BODY { SET p TO p - POSITIONAT(b,u_time). }
+  IF b <> BODY { SET p TO p - POSITIONAT(b, u_time). }
   ELSE { SET p TO p - BODY:POSITION. }
   RETURN p.
 }
@@ -31,9 +31,9 @@ FUNCTION posAt {
 FUNCTION taAt {
   PARAMETER c, u_time.
   LOCAL o IS ORBITAT(c,u_time).
-  LOCAL r IS posAt(c,u_time):MAG.
-  LOCAL c_ta IS calcTa(o:SEMIMAJORAXIS,o:ECCENTRICITY,r).
-  IF posAt(c,u_time+1):MAG < r { SET c_ta TO 360 - c_ta. }
+  LOCAL r1 IS posAt(c,u_time):MAG.
+  LOCAL c_ta IS calcTa(o:SEMIMAJORAXIS,o:ECCENTRICITY,r1).
+  IF posAt(c,u_time+1):MAG < r1 { SET c_ta TO 360 - c_ta. }
   RETURN c_ta.
 }
 
@@ -79,15 +79,15 @@ FUNCTION nodeAlterOrbit {
 
   LOCAL b IS ORBITAT(SHIP,u_time):BODY.
   LOCAL p IS posAt(SHIP,u_time).
-  LOCAL v IS velAt(SHIP,u_time).
-  LOCAL f_ang IS 90 - VANG(v,p).
+  LOCAL v1 IS velAt(SHIP,u_time).
+  LOCAL f_ang IS 90 - VANG(v1,p).
 
-  LOCAL r IS p:MAG.
-  LOCAL a1 IS (r + opp_alt + b:RADIUS) / 2.
+  LOCAL r1 IS p:MAG.
+  LOCAL a1 IS (r1 + opp_alt + b:RADIUS) / 2.
 
-  LOCAL v1 IS SQRT(b:MU * ((2/r)-(1/a1))).
-  LOCAL pro IS (v1 * COS(f_ang)) - v:MAG.
-  LOCAL rad IS -v1 * SIN(f_ang).
+  LOCAL v2 IS SQRT(b:MU * ((2/r1)-(1/a1))).
+  LOCAL pro IS (v2 * COS(f_ang)) - v1:MAG.
+  LOCAL rad IS -v2 * SIN(f_ang).
   LOCAL n IS NODE(u_time, rad, 0, pro).
   RETURN n.
 }
@@ -96,15 +96,15 @@ FUNCTION timeHeigth {
   PARAMETER ORBIT_H IS APOAPSIS.
   LOCAL t IS ETA:APOAPSIS.
   IF APOAPSIS > ORBIT_H {
-    LOCAL h IS APOAPSIS.
+    LOCAL h1 IS APOAPSIS.
     LOCAL dt IS t / 2.
     LOCAL dir IS 1.
     UNTIL ABS(h - ORBIT_H) < 1 OR dt < 1 {
       LOCAL u_time IS TIME:SECONDS + t.
       LOCAL b IS ORBITAT(SHIP,u_time):BODY.
       LOCAL p IS posAt(SHIP,u_time).
-      LOCAL h IS p:MAG - b:RADIUS.
-      IF h > ORBIT_H { SET dir TO -1. }
+      LOCAL h1 IS p:MAG - b:RADIUS.
+      IF h1 > ORBIT_H { SET dir TO -1. }
       ELSE { SET dir TO 1. }
       SET t to t + dt * dir.
       SET dt TO dt / 2.

@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 SWITCH TO 1.
 RUNPATH("0:/clean.ks").
 LOCAL pl IS LIST().

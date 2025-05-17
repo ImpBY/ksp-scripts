@@ -1,8 +1,8 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_rcs.ks",
-  "lib_burn.ks"
+  "lib_rcs.ks", // #include lib_rcs
+  "lib_burn.ks" // #include lib_burn
 ) { runScript(f,debug()). }
 
 GLOBAL RCS_BURN_FUELS IS LIST("MonoPropellant").

@@ -1,0 +1,522 @@
+MODULES FOR PART NAMED probeCoreOcto.v2
+________________________________
+Module: ModuleCommand
+__ events ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(callable) control point: default, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) control from here, is KSPEvent"
+[2] = 
+  ["value"] = "(callable) rename vessel, is KSPEvent"
+__ fields ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(settable) comm signal, is String"
+[1] = 
+  ["value"] = "(settable) comm first hop dist, is String"
+[2] = 
+  ["value"] = "(settable) command state, is String"
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) control from here, is KSPAction"
+[1] = 
+  ["value"] = "(callable) toggle hibernation, is KSPAction"
+________________________________
+________________________________
+Module: ModuleReactionWheel
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) toggle torque, is KSPEvent"
+__ fields ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(settable) reaction wheels, is Int32"
+[1] = 
+  ["value"] = "(settable) wheel authority, is Single"
+[2] = 
+  ["value"] = "(settable) reaction wheels, is String"
+__ actions _____________________
+LIST of 4 items:
+[0] = 
+  ["value"] = "(callable) cycle wheel mode, is KSPAction"
+[1] = 
+  ["value"] = "(callable) activate wheel, is KSPAction"
+[2] = 
+  ["value"] = "(callable) deactivate wheel, is KSPAction"
+[3] = 
+  ["value"] = "(callable) toggle rw, is KSPAction"
+________________________________
+________________________________
+Module: ModuleSAS
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: ModuleKerbNetAccess
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) kerbnet access, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) kerbnet access, is KSPAction"
+________________________________
+________________________________
+Module: ModuleCargoPart
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: Configure
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FundsKeeper
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: StealBackMyFunds
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: HardDrive
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) <b>data</b>: 56.68 kb , is KSPEvent"
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) capacity, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: Experiment
+__ events ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) _, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) _, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) start: temperature scan, is KSPAction"
+[1] = 
+  ["value"] = "(callable) stop: temperature scan, is KSPAction"
+________________________________
+________________________________
+Module: MechJebCore
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) mechjeb, is Boolean"
+__ actions _____________________
+LIST of 18 items:
+[0] = 
+  ["value"] = "(callable) orbit prograde, is KSPAction"
+[1] = 
+  ["value"] = "(callable) orbit retrograde, is KSPAction"
+[2] = 
+  ["value"] = "(callable) orbit normal, is KSPAction"
+[3] = 
+  ["value"] = "(callable) orbit antinormal, is KSPAction"
+[4] = 
+  ["value"] = "(callable) orbit radial in, is KSPAction"
+[5] = 
+  ["value"] = "(callable) orbit radial out, is KSPAction"
+[6] = 
+  ["value"] = "(callable) orbit kill rotation, is KSPAction"
+[7] = 
+  ["value"] = "(callable) deactivate smartacs, is KSPAction"
+[8] = 
+  ["value"] = "(callable) land somewhere, is KSPAction"
+[9] = 
+  ["value"] = "(callable) land at ksc, is KSPAction"
+[10] = 
+  ["value"] = "(callable) panic!, is KSPAction"
+[11] = 
+  ["value"] = "(callable) translatron off, is KSPAction"
+[12] = 
+  ["value"] = "(callable) translatron keep vert, is KSPAction"
+[13] = 
+  ["value"] = "(callable) translatron zero speed, is KSPAction"
+[14] = 
+  ["value"] = "(callable) translatron +1 speed, is KSPAction"
+[15] = 
+  ["value"] = "(callable) translatron -1 speed, is KSPAction"
+[16] = 
+  ["value"] = "(callable) translatron toggle h/s, is KSPAction"
+[17] = 
+  ["value"] = "(callable) ascent ap toggle, is KSPAction"
+________________________________
+________________________________
+Module: FlightEngineerModule
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) verbose simulation log, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: ModulePartVariants
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: GeometryPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FARAeroPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FARPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: HotSpotModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(settable) temp [i], is String"
+[1] = 
+  ["value"] = "(settable) temp [s], is String"
+[2] = 
+  ["value"] = "(settable) thermal rate, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: Reliability
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) reaction wheel, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: KOSNameTag
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) change name tag, is KSPEvent"
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) name tag, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: kOSProcessor
+__ events ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(callable) open terminal, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) close terminal, is KSPEvent"
+[2] = 
+  ["value"] = "(callable) toggle power, is KSPEvent"
+__ fields ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(settable) kos disk space, is Int32"
+[1] = 
+  ["value"] = "(settable) kos average power, is Single"
+__ actions _____________________
+LIST of 7 items:
+[0] = 
+  ["value"] = "(callable) open terminal, is KSPAction"
+[1] = 
+  ["value"] = "(callable) close terminal, is KSPAction"
+[2] = 
+  ["value"] = "(callable) toggle terminal, is KSPAction"
+[3] = 
+  ["value"] = "(callable) toggle power, is KSPAction"
+[4] = 
+  ["value"] = "(callable) suppress on, is KSPAction"
+[5] = 
+  ["value"] = "(callable) suppress off, is KSPAction"
+[6] = 
+  ["value"] = "(callable) toggle suppression, is KSPAction"
+________________________________
+________________________________
+Module: Sensor
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) radiation, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: Sensor
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) radiation, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: ModuleRealAntenna
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(settable) condition, is AntennaCondition"
+[1] = 
+  ["value"] = "(settable) antenna state, is String"
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) disable antenna permanently, is KSPAction"
+[1] = 
+  ["value"] = "(callable) transmit data, is KSPAction"
+________________________________
+________________________________
+Module: ModuleTripLogger
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: ModuleAeroReentry
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(settable) maxoperationaltemp, is Double"
+[1] = 
+  ["value"] = "(settable) skinmaxoperationaltemp, is Double"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________

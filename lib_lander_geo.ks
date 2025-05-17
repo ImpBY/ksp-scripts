@@ -1,8 +1,8 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_geo.ks",
-  "lib_orbit_phase.ks"
+  "lib_geo.ks", // #include lib_geo
+  "lib_orbit_phase.ks" // #include lib_orbit_phase
 ) { runScript(f,debug()). }
 
 FUNCTION isPhasePeriodBetter {

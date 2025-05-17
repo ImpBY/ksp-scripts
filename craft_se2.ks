@@ -1,3 +1,5 @@
+@LAZYGLOBAL OFF. // #include init
+
 sasOff().
 rcsOff().
 

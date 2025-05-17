@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FUNCTION targetDist {
   PARAMETER t, u_time.

@@ -1,0 +1,174 @@
+MODULES FOR PART NAMED longAntenna
+________________________________
+Module: ModuleDeployableAntenna
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) retract antenna, is KSPEvent"
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(callable) toggle antenna, is KSPAction"
+[1] = 
+  ["value"] = "(callable) extend antenna, is KSPAction"
+[2] = 
+  ["value"] = "(callable) retract antenna, is KSPAction"
+________________________________
+________________________________
+Module: ModuleCargoPart
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FundsKeeper
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: StealBackMyFunds
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: GeometryPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FARAeroPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: FARPartModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 0 items:
+
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: HotSpotModule
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(settable) temp [i], is String"
+[1] = 
+  ["value"] = "(settable) temp [s], is String"
+[2] = 
+  ["value"] = "(settable) thermal rate, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: KOSNameTag
+__ events ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(callable) change name tag, is KSPEvent"
+__ fields ______________________
+LIST of 1 items:
+[0] = 
+  ["value"] = "(settable) name tag, is String"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________
+________________________________
+Module: ModuleRealAntenna
+__ events ______________________
+LIST of 3 items:
+[0] = 
+  ["value"] = "(callable) antenna planning, is KSPEvent"
+[1] = 
+  ["value"] = "(callable) debugantenna, is KSPEvent"
+[2] = 
+  ["value"] = "(callable) disable antenna permanently, is KSPEvent"
+__ fields ______________________
+LIST of 9 items:
+[0] = 
+  ["value"] = "(settable) condition, is AntennaCondition"
+[1] = 
+  ["value"] = "(settable) gain, is Single"
+[2] = 
+  ["value"] = "(settable) transmit power (dbm), is Single"
+[3] = 
+  ["value"] = "(settable) tech level, is Single"
+[4] = 
+  ["value"] = "(settable) rf band, is String"
+[5] = 
+  ["value"] = "(settable) power (active), is String"
+[6] = 
+  ["value"] = "(settable) power (idle), is String"
+[7] = 
+  ["value"] = "(settable) antenna target, is String"
+[8] = 
+  ["value"] = "(settable) antenna state, is String"
+__ actions _____________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(callable) disable antenna permanently, is KSPAction"
+[1] = 
+  ["value"] = "(callable) transmit data, is KSPAction"
+________________________________
+________________________________
+Module: ModuleAeroReentry
+__ events ______________________
+LIST of 0 items:
+
+__ fields ______________________
+LIST of 2 items:
+[0] = 
+  ["value"] = "(settable) maxoperationaltemp, is Double"
+[1] = 
+  ["value"] = "(settable) skinmaxoperationaltemp, is Double"
+__ actions _____________________
+LIST of 0 items:
+
+________________________________

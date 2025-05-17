@@ -1,9 +1,9 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_dv.ks",
-  "lib_node.ks",
-  "lib_steer.ks"
+  "lib_dv.ks", // #include lib_dv
+  "lib_node.ks", // #include lib_node
+  "lib_steer.ks" // #include lib_steer
 ) { runScript(f,debug()). }
 
 GLOBAL BURN_THROTTLE IS 0.

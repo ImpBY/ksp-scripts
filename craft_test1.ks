@@ -1,3 +1,5 @@
+@LAZYGLOBAL OFF. // #include init
+
 GLOBAL f_exit IS FALSE.
 // GLOBAL v_count IS 0.
 // GLOBAL v_time IS TIME:SECONDS.

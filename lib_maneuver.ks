@@ -1,7 +1,7 @@
-@lazyglobal off.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_dv.ks"
+  "lib_dv.ks" // #include lib_dv
 ) { runScript(f,debug()). }
 
 // Redefine this function to allow rcs rotation on some stages.

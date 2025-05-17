@@ -1,9 +1,9 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_steer.ks",
-  "lib_geo.ks",
-  "lib_science.ks"
+  "lib_steer.ks", // #include lib_steer
+  "lib_geo.ks", // #include lib_geo
+  "lib_science.ks" // #include lib_science
 ) { runScript(f,debug()). }
 
 GLOBAL WP_BUFFER IS 30.

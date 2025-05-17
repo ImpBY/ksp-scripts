@@ -1,7 +1,6 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 SWITCH TO 1.
 
-// Функция для обновления загрузочного файла процессоров
 FUNCTION updateProcessorBootFiles {
   LOCAL pl IS LIST().
   LIST PROCESSORS IN pl.
@@ -14,7 +13,6 @@ FUNCTION updateProcessorBootFiles {
   COPYPATH("0:/boot/boot.ks","1:/boot/boot.ks").
 }
 
-// Функция для загрузки скриптов
 FUNCTION loadScripts {
   LOCAL fl TO VOLUME(0):FILES:KEYS.
   FOR f IN fl {
@@ -24,20 +22,15 @@ FUNCTION loadScripts {
   }
 }
 
-// Основная логика
 updateProcessorBootFiles().
-RUNPATH("0:/init_multi.ks").
-//debugOn().
 delScript("init.ks").
-delScript("init_common.ks").
 
-RUNPATH("0:/init_select.ks").
+COPYPATH("0:/init.ks","1:/init.ks").
 RUNPATH("1:/init.ks").
 
 loadScripts().
 
-RUNPATH("0:/init_select.ks").
+COPYPATH("0:/init.ks","1:/init.ks").
 RUNPATH("1:/init.ks").
 
-//debugOff().
 pOut("Update complete").

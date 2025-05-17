@@ -1,7 +1,7 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_ant.ks"
+  "lib_ant.ks" // #include lib_ant
 ) { runScript(f,debug()). }
 
 GLOBAL SCI_LIST IS LIST().

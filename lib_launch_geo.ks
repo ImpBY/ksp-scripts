@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 GLOBAL HALF_LAUNCH IS 145.
 
@@ -15,15 +15,15 @@ FUNCTION latIncOk {
 FUNCTION etaToOrbitPlane {
   PARAMETER is_AN, planet, orb_lan, i, ship_lat, ship_lng.
 
-  LOCAL eta IS -1.
+  LOCAL eta1 IS -1.
   IF latIncOk(ship_lat,i) {
     LOCAL rel_lng IS ARCSIN(TAN(ship_lat)/TAN(i)).
     IF NOT is_AN { SET rel_lng TO 180 - rel_lng. }
     LOCAL g_lan IS mAngle(orb_lan + rel_lng - planet:ROTATIONANGLE).
     LOCAL node_angle IS mAngle(g_lan - ship_lng).
-    SET eta TO (node_angle / 360) * planet:ROTATIONPERIOD.
+    SET eta1 TO (node_angle / 360) * planet:ROTATIONPERIOD.
   }
-  RETURN eta.
+  RETURN eta1.
 }
 
 FUNCTION azimuth {
@@ -64,28 +64,28 @@ FUNCTION noPassLaunchDetails {
 
   IF i = 0 OR i = 180 { RETURN LIST(az,0). }
 
-  LOCAL eta IS 0.
-  IF LATITUDE > 0 { SET eta TO etaToOrbitPlane(TRUE,BODY,lan,i,lat,LONGITUDE). }
-  ELSE { SET eta TO etaToOrbitPlane(FALSE,BODY,lan,i,-lat,LONGITUDE). }
-  LOCAL launch_time IS TIME:SECONDS + eta - HALF_LAUNCH.
+  LOCAL eta1 IS 0.
+  IF LATITUDE > 0 { SET eta1 TO etaToOrbitPlane(TRUE,BODY,lan,i,lat,LONGITUDE). }
+  ELSE { SET eta1 TO etaToOrbitPlane(FALSE,BODY,lan,i,-lat,LONGITUDE). }
+  LOCAL launch_time IS TIME:SECONDS + eta1 - HALF_LAUNCH.
   RETURN LIST(az,launch_time).
 }
 
 FUNCTION launchDetails {
   PARAMETER ap,i,lan,az.
 
-  LOCAL eta IS 0.
+  LOCAL eta1 IS 0.
   SET az TO launchAzimuth(BODY,az,ap).
   LOCAL eta_to_AN IS etaToOrbitPlane(TRUE,BODY,lan,i,LATITUDE,LONGITUDE).
   LOCAL eta_to_DN IS etaToOrbitPlane(FALSE,BODY,lan,i,LATITUDE,LONGITUDE).
 
   IF eta_to_DN < 0 AND eta_to_AN < 0 { RETURN noPassLaunchDetails(ap,i,lan). }
   ELSE IF (eta_to_DN < eta_to_AN OR eta_to_AN < HALF_LAUNCH) AND eta_to_DN >= HALF_LAUNCH {
-    SET eta TO eta_to_DN.
+    SET eta1 TO eta_to_DN.
     SET az TO mAngle(180 - az).
-  } ELSE IF eta_to_AN >= HALF_LAUNCH { SET eta TO eta_to_AN. }
-  ELSE { SET eta TO eta_to_AN + BODY:ROTATIONPERIOD. }
-  LOCAL launch_time IS TIME:SECONDS + eta - HALF_LAUNCH.
+  } ELSE IF eta_to_AN >= HALF_LAUNCH { SET eta1 TO eta_to_AN. }
+  ELSE { SET eta1 TO eta_to_AN + BODY:ROTATIONPERIOD. }
+  LOCAL launch_time IS TIME:SECONDS + eta1 - HALF_LAUNCH.
   RETURN LIST(az,launch_time).
 }
 

@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 GLOBAL CREW_SIZE IS 0.
 GLOBAL CREW_FN IS "cs.ks".

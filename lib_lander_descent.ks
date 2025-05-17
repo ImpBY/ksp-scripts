@@ -1,13 +1,13 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 FOR f IN LIST(
-  "lib_steer.ks",
-  "lib_burn.ks",
-  "lib_runmode.ks",
-  "lib_orbit.ks",
-  "lib_geo.ks",
-  "lib_lander_common.ks",
-  "lib_lander_geo.ks"
+  "lib_steer.ks", // #include lib_steer
+  "lib_burn.ks", // #include lib_burn
+  "lib_runmode.ks", // #include lib_runmode
+  "lib_orbit.ks", // #include lib_orbit
+  "lib_geo.ks", // #include lib_geo
+  "lib_lander_common.ks", // #include lib_lander_common
+  "lib_lander_geo.ks" // #include lib_lander_geo
 ) { runScript(f,debug()). }
 
 GLOBAL LND_THRUST_ACC IS 0.

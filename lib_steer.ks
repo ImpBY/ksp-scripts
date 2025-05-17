@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF.
+@LAZYGLOBAL OFF. // #include init
 
 setTime("STEER").
 GLOBAL STEER_ON IS FALSE.
