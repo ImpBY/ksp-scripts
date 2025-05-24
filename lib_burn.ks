@@ -40,7 +40,7 @@ FUNCTION burnThrottle {
 }
 
 FUNCTION burnSmallNode {
-  PARAMETER n, bt.
+  PARAMETER bt.
 
   LOCAL u_time IS TIME:SECONDS.
   SET BURN_THROTTLE TO BURN_SMALL_THROT.
@@ -65,7 +65,7 @@ FUNCTION burnNode {
   WAIT UNTIL n:ETA <= hbt.
 
   LOCAL done IS BURN_NODE_IS_SMALL.
-  IF done { burnSmallNode(n, bt). }
+  IF done { burnSmallNode(bt). }
   LOCAL follow_node IS TRUE.
 
   UNTIL done OR NOT ok {

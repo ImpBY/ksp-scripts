@@ -13,7 +13,7 @@ resume(RM_FN).
 
 ON AG9 {
   PRINT "INPUT: " + RM_COUNT + " (tempWARP CONTROL)".
-  warpTemp(NOT WARP_ALLOW_).
+  warpTemp(NOT warpAllowTemp()).
   warpStatus(FALSE).
   RETURN TRUE.
 }
@@ -27,7 +27,7 @@ ON AG10 {
   }
   SET RM_COUNT TO RM_COUNT + 1.
   setTime("RM_COUNT", TIME:SECONDS + 10).
-  IF        RM_COUNT = 1 { PRINT "SET CODE: " + RM_COUNT + " (WARP CONTROL) CURRENT: " + WARP_ALLOW.
+  IF        RM_COUNT = 1 { PRINT "SET CODE: " + RM_COUNT + " (WARP CONTROL) CURRENT: " + warpAllow().
   } ELSE IF RM_COUNT = 2 { PRINT "SET CODE: " + RM_COUNT + " (UPDATE + REBOOT)".
   } ELSE IF RM_COUNT = 3 { PRINT "SET CODE: " + RM_COUNT + " (SS MODE + REBOOT)".
   } ELSE IF RM_COUNT = 4 { PRINT "SET CODE: " + RM_COUNT + " (CLEAN + REBOOT)".
@@ -41,7 +41,7 @@ ON ABORT {
     IF RM_AM > 0 { pOut("Abort to mode: " + RM_AM,FALSE). runMode(RM_AM, 0, FALSE). }
   } ELSE IF RM_COUNT = 1 {
     PRINT "INPUT: " + RM_COUNT + " (WARP CONTROL)".
-    warpStatus(NOT WARP_ALLOW).
+    warpStatus(NOT warpAllow()).
   } ELSE IF RM_COUNT = 2 {
     PRINT "INPUT: " + RM_COUNT + " (UPDATE + REBOOT)".
     runScript("u.ks",TRUE).

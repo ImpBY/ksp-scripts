@@ -22,6 +22,8 @@ GLOBAL chuteDeploy IS modEvent@:BIND("выпуск").
 GLOBAL chuteCanDisarm IS canEvent@:BIND("снять со взвода").
 GLOBAL chuteDisarm IS modEvent@:BIND("снять со взвода").
 
+listChutes(TRUE).
+
 FUNCTION hasChutes {
   RETURN CHUTE_LIST:LENGTH > 0.
 }
@@ -51,5 +53,3 @@ FUNCTION disarmChutes {
   FOR m IN CHUTE_LIST { IF chuteCanDisarm(m) { chuteDisarm(m). SET act TO TRUE. } }
   listChutes().
 }
-
-listChutes(TRUE).

@@ -56,7 +56,7 @@ FUNCTION launchAzimuth {
 }
 
 FUNCTION noPassLaunchDetails {
-  PARAMETER ap,i,lan.
+  PARAMETER i,lan.
 
   LOCAL az IS 90.
   LOCAL lat IS MIN(i, 180-i).
@@ -79,7 +79,7 @@ FUNCTION launchDetails {
   LOCAL eta_to_AN IS etaToOrbitPlane(TRUE,BODY,lan,i,LATITUDE,LONGITUDE).
   LOCAL eta_to_DN IS etaToOrbitPlane(FALSE,BODY,lan,i,LATITUDE,LONGITUDE).
 
-  IF eta_to_DN < 0 AND eta_to_AN < 0 { RETURN noPassLaunchDetails(ap,i,lan). }
+  IF eta_to_DN < 0 AND eta_to_AN < 0 { RETURN noPassLaunchDetails(i,lan). }
   ELSE IF (eta_to_DN < eta_to_AN OR eta_to_AN < HALF_LAUNCH) AND eta_to_DN >= HALF_LAUNCH {
     SET eta1 TO eta_to_DN.
     SET az TO mAngle(180 - az).
@@ -93,7 +93,7 @@ FUNCTION calcLaunchDetails {
   PARAMETER ap,i,lan.
 
   LOCAL az IS azimuth(i).
-  IF az < 0 { RETURN noPassLaunchDetails(ap,i,lan). }
+  IF az < 0 { RETURN noPassLaunchDetails(i,lan). }
   ELSE { RETURN launchDetails(ap,i,lan,az). }
 }
 

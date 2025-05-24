@@ -14,7 +14,7 @@ GLOBAL mission_end_mode IS 888.
 GLOBAL ANG_PREC IS 0.2.
 GLOBAL ALT_PREC IS 1.0.
 
-runCraftInit().
+IF SHIP_FILE { runScript(CRAFT_FILE_RUN,debug()). }
 
 UNTIL runMode() = 99 {
 LOCAL rm IS runMode().
@@ -32,7 +32,7 @@ IF rm < 0 {
   }
 
 } ELSE IF rm = 800 {
-  runScript("lib_reentry.ks",debug()).
+  runScript("lib_reentry.ks",debug()). // #include lib_reentry
   append("doReentry(1,99).").
   doReentry(0,99).
 }

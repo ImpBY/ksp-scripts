@@ -29,7 +29,7 @@ FUNCTION nodeGeoPhasingOrbit {
   }
 
   IF ok {
-    LOCAL lng_drift IS 360 * orb:PERIOD / b:ROTATIONPERIOD.
+    // LOCAL lng_drift IS 360 * orb:PERIOD / b:ROTATIONPERIOD.
 
     LOCAL ta1 IS firstTAAtLat(orb,lat).
     LOCAL ta2 IS secondTAAtLat(orb,lat).

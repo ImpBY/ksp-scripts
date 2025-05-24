@@ -10,6 +10,7 @@ FOR f IN LIST(
   "lib_lander_geo.ks" // #include lib_lander_geo
 ) { runScript(f,debug()). }
 
+GLOBAL LND_THROTTLE IS 0.
 GLOBAL LND_THRUST_ACC IS 0.
 GLOBAL LND_RADAR_ADJUST IS 0.
 
@@ -19,6 +20,7 @@ FUNCTION initDescentValues {
   landerSetMinVSpeed(0).
   SET LND_RADAR_ADJUST TO adjust.
 
+  SET LND_THRUST_ACC TO LND_THRUST_ACC.
   LOCK LND_THRUST_ACC TO SHIP:AVAILABLETHRUST / MASS.
   initLanderValues().
 }
@@ -57,7 +59,7 @@ FUNCTION findHighestPointNear {
 
 FUNCTION addNodeLowerPeriapsisOverSpot {
   PARAMETER lat,lng.
-  PARAMETER safety_factor,max_dist. // both m
+  PARAMETER safety_factor,max_dist.
   PARAMETER days_limit.
 
   pOut("Plotting node to lower periapsis over target spot.").
@@ -67,11 +69,11 @@ FUNCTION addNodeLowerPeriapsisOverSpot {
   }
   LOCAL new_pe IS findHighestPointNear(lat,lng) + safety_factor.
   LOCAL time_over_site IS findNextPass(SHIP,BODY,LATLNG(lat,lng),max_dist,days_limit).
-  LOCAL eta IS time_over_site - TIME:SECONDS.
-  IF eta < 0 OR eta > (days_limit * ONE_DAY) {
+  LOCAL eta1 IS time_over_site - TIME:SECONDS.
+  IF eta1 < 0 OR eta1 > (days_limit * ONE_DAY) {
     pOut("ERROR: ship does not overfly target spot within time limit.").
     RETURN FALSE.
-  } ELSE IF eta < (SHIP:OBT:PERIOD / 2) + nodeBuffer() {
+  } ELSE IF eta1 < (SHIP:OBT:PERIOD / 2) + nodeBuffer() {
     pOut("Cannot lower periapsis in time for next time ship overflies target spot.").
     pOut("Warping beyond overflight to recalculate.").
     doWarp(bufferTime() + (SHIP:OBT:PERIOD / 2)).
@@ -87,7 +89,7 @@ FUNCTION addNodeLowerPeriapsisOverSpot {
 
 FUNCTION checkPeriapsis {
   PARAMETER lat,lng.
-  PARAMETER safety_factor. // m
+  PARAMETER safety_factor.
 
   steerSurf().
   WAIT UNTIL steerOk(1,3).
@@ -105,7 +107,7 @@ FUNCTION checkPeriapsis {
 }
 
 FUNCTION warpToPeriapsis {
-  PARAMETER safety_factor. // m
+  PARAMETER safety_factor.
   LOCAL warp_time IS TIME:SECONDS + ETA:PERIAPSIS - 30.
   IF warp_time - TIME:SECONDS > 5 {
     pOut("Warping until close to periapsis.").
@@ -119,7 +121,6 @@ FUNCTION constantAltitudeVec {
 }
 
 FUNCTION doConstantAltitudeBurn {
-  PARAMETER safety_factor. // m
   pOut("Preparing for constant altitude burn.").
   SET LND_THROTTLE TO 0.
   throttleTo({ RETURN LND_THROTTLE. }).
@@ -148,7 +149,7 @@ FUNCTION doConstantAltitudeBurn {
       findMinVSpeed(-50,90,3).
     }
 
-    IF GROUNDSPEED < 4 {
+    IF VESSEL:GROUNDSPEED < 4 {
       SET done TO TRUE.
       pOut("Groundspeed close to zero; ending constant altitude burn.").
     }
@@ -297,14 +298,14 @@ UNTIL rm = exit_mode {
     checkPeriapsis(l_lat,l_lng,pe_safety_factor).
     runMode(231).
   } ELSE IF rm = 229 {
-    // wait
+    WAIT 0.
 
   } ELSE IF rm = 231 {
     warpToPeriapsis(pe_safety_factor).
     runMode(232).
   } ELSE IF rm = 232 {
     steerTo(constantAltitudeVec@).
-    doConstantAltitudeBurn(pe_safety_factor).
+    doConstantAltitudeBurn().
     runMode(233).
   } ELSE IF rm = 233 {
     steerSurf(FALSE).

@@ -121,7 +121,7 @@ FUNCTION findNextPass {
       IF ABS(spot:LNG - t_spot:LNG) < 3 {
         LOCAL ca_time IS findNextPassCA(craft,planet,t_spot,pass_time).
         LOCAL dist IS distAtTime(craft,planet,t_spot,ca_time).
-        LOCAL eta IS ca_time - TIME:SECONDS.
+        // LOCAL eta IS ca_time - TIME:SECONDS.
         IF dist < max_dist AND dist >= 0 {
           SET found_pass TO TRUE.
           SET return_time TO ca_time.
@@ -179,8 +179,8 @@ FUNCTION listContractWaypointsByETA {
     LOCAL wp_spot IS wp:GEOPOSITION.
     IF wp:NAME<>"Site" AND wp:NAME<>craft:NAME AND latOkForInc(wp_spot:LAT,i) {
       LOCAL wp_eta_time IS findNextPass(craft,planet,wp_spot,max_dist*1000,days_limit).
-      LOCAL eta IS wp_eta_time - TIME:SECONDS.
-      IF eta >= 0 AND eta <= (days_limit * ONE_DAY) {
+      LOCAL eta1 IS wp_eta_time - TIME:SECONDS.
+      IF eta1 >= 0 AND eta1 <= (days_limit * ONE_DAY) {
         LOCAL wp_dist IS distAtTime(craft,planet,wp_spot,wp_eta_time).
         LOCAL wayDetails IS LIST(wp_eta_time, wp:NAME, wp_dist, wp_spot).
         SET etaList TO addWaypointToList(wayDetails, etaList).

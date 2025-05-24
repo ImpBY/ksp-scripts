@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 GLOBAL NEW_NAME IS "Launch1".
 GLOBAL ORBIT_AP IS 100000.
@@ -27,6 +27,4 @@ IF HASTARGET {
   SET ORBIT_INC TO TARGET:OBT:INCLINATION.
 }
 
-rcsOn().
-sysUpdate(NEW_NAME).
-runScript("ship_launch.ks",debug()).
+GLOBAL SHIP_FILE IS "ship_launch.ks".

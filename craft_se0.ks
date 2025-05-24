@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 LOCAL AZIMUT IS 90.
 LOCK PANGL TO 90.
@@ -8,8 +8,8 @@ LOCAL Stage1FinalPitch IS 30.
 LOCAL TurnTime IS 125.
 
 FOR f IN LIST(
-  "lib_launch_common.ks",
-  "lib_steer.ks"
+  "lib_launch_common.ks", // #include lib_launch_common
+  "lib_steer.ks" // #include lib_steer
 ) { runScript(f,debug()). }
 
 WAIT 10.

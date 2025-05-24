@@ -170,7 +170,7 @@ FUNCTION checkLES {
 }
 
 FUNCTION launchInit {
-  PARAMETER ap,az,i,c IS TRUE.
+  PARAMETER ap,az,i.
   
   SET LCH_AP TO MAX(ap, MAX(BODY:ATM:HEIGHT * 1.06, LCH_NOATMO)).
   
@@ -224,8 +224,8 @@ FUNCTION launchFairing {
     LOCAL mn IS "ModuleProceduralFairing".
     partEventByTag(e,mn,"LaunchFairing").
     FOR p IN LCH_FAIRING_LIST { partEvent(e,mn,p). }
-    LOCAL e IS "jettison fairing".
-    LOCAL mn IS "ProceduralFairingDecoupler".
+    SET e TO "jettison fairing".
+    SET mn TO "ProceduralFairingDecoupler".
     FOR p IN LCH_FAIRING_LIST { partEvent(e,mn,p). }
     SET LCH_HAS_FAIRING TO FALSE.
     WAIT UNTIL STAGE:READY AND stageTime() > 0.2.

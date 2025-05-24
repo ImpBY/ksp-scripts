@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. COPYPATH("0:/init.ks","1:/init.ks"). RUNONCEPATH("1:/init.ks"). // #include init
 SWITCH TO 1.
 
 FUNCTION updateProcessorBootFiles {
@@ -23,14 +23,6 @@ FUNCTION loadScripts {
 }
 
 updateProcessorBootFiles().
-delScript("init.ks").
-
-COPYPATH("0:/init.ks","1:/init.ks").
-RUNPATH("1:/init.ks").
-
 loadScripts().
-
-COPYPATH("0:/init.ks","1:/init.ks").
-RUNPATH("1:/init.ks").
 
 pOut("Update complete").

@@ -39,7 +39,7 @@ FUNCTION doLanderAscent {
   PARAMETER launch_ap, launch_az.
   PARAMETER stages_on_launch.
   PARAMETER exit_mode.
-  SET LND_LAP to launch_ap.
+  SET LND_LAP TO launch_ap.
   SET LND_LAZ TO launch_az.
 
   pOut("Launch to apoasis: " + LND_LAP).

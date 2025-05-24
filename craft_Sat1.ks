@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 GLOBAL ORBIT_AP IS MUN:ORBIT:APOAPSIS.
 GLOBAL ORBIT_PE IS MUN:ORBIT:PERIAPSIS.
@@ -23,6 +23,4 @@ GLOBAL SHIP_TWR IS 2.0.
 GLOBAL SHIP_THR_CONTROL IS TRUE.
 GLOBAL SHIP_WARP_ALLOW IS FALSE.
 
-rcsOn().
-sysUpdate(NEW_NAME).
-runScript("ship_bso2.ks",debug()).
+GLOBAL SHIP_FILE IS "ship_bso2.ks".

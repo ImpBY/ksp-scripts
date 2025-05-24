@@ -5,7 +5,7 @@ GLOBAL mission_end_mode IS 888.
 GLOBAL EC_CAP IS 0.
 GLOBAL EC_AMOUNT IS 0.
 
-runCraftInit().
+IF SHIP_FILE { runScript(CRAFT_FILE_RUN,debug()). }
 
 UNTIL runMode() = 99 {
 LOCAL rm IS runMode().
@@ -29,7 +29,7 @@ IF rm < 0 {
   ELSE { runMode(805,99). }
 
 } ELSE IF rm = 803 {
-  runScript("lib_burn.ks",debug()).
+  runScript("lib_burn.ks",debug()). // #include lib_burn
   IF execNode(TRUE) { runMode(801). }
   ELSE { runMode(804,801). }
 

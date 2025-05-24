@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 GLOBAL SAT_ANGL IS mAngle(2+45+90).
 
@@ -19,6 +19,4 @@ GLOBAL ORBIT_LOW IS 100000.
 GLOBAL ANG_PREC IS 0.002.
 GLOBAL ALT_PREC IS 0.010.
 
-rcsOn().
-sysUpdate(NEW_NAME).
-runScript("ship_bso2.ks",debug()).
+GLOBAL SHIP_FILE IS "ship_bso2.ks".

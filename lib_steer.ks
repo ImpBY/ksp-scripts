@@ -36,13 +36,13 @@ FUNCTION steerOrbit {
 }
 
 FUNCTION steerNormal {
-  steerTo({ RETURN VCRS(VELOCITY:ORBIT,-BODY:POSITION). }, { RETURN SUN:POSITION. }).
+  steerTo({ RETURN VCRS(VELOCITY:ORBIT,-BODY:POSITION). }, { RETURN body("SUN"):POSITION. }).
 }
 
 FUNCTION steerSun {
   PARAMETER f_top IS STEER_SUN_TOP.
   IF STEER_SUN {
-    IF f_top { steerTo({ RETURN SUN:POSITION. }). }
+    IF f_top { steerTo({ RETURN body("SUN"):POSITION. }). }
     ELSE { steerNormal(). }
   } ELSE {
     steerTo({ RETURN FACING:TOPVECTOR. }).

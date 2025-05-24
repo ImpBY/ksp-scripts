@@ -11,11 +11,12 @@ FOR f IN LIST(
 ) { runScript(f,debug()). }
 
 GLOBAL ORBIT_LOW IS MAX(BODY:ATM:HEIGHT * 1.05, 8000).
+GLOBAL SHIP_TWR IS 2.0.
 GLOBAL SHIP_WARP_ALLOW IS FALSE.
 GLOBAL ANG_PREC IS 0.2.
 GLOBAL ALT_PREC IS 1.0.
 
-runCraftInit().
+IF SHIP_FILE { runScript(CRAFT_FILE_RUN,debug()). }
 
 FUNCTION validMoonTarget {
   RETURN HASTARGET AND TARGET:OBT:BODY:OBT:BODY = BODY AND crewCount(TARGET) > 0.
@@ -39,7 +40,7 @@ IF rm < 0 {
   store("runScript(" + CHAR(34) + CRAFT_FILE_RUN + CHAR(34) + "," + debug() + ").","autorun.ks").
   warpStatus(SHIP_WARP_ALLOW).
 
-  runScript("lib_launch_geo.ks",debug()).
+  runScript("lib_launch_geo.ks",debug()). // #include lib_launch_geo
 
   hudMsg("Please select a target").
   pOut("Waiting.").
@@ -61,26 +62,26 @@ IF rm < 0 {
   }
 
   delScript("lib_launch_geo.ks",debug()).
-  runScript("lib_launch_crew.ks",debug()).
+  runScript("lib_launch_crew.ks",debug()). // #include lib_launch_crew
   SET OPT_TWR TO SHIP_TWR.
 
   store("doLaunch(801," + ap + "," + az + "," + b_I + ").").
   doLaunch(801,ap,az,b_I).
 
 } ELSE IF rm < 50 {
-  runScript("lib_launch_crew.ks",debug()).
+  runScript("lib_launch_crew.ks",debug()). // #include lib_launch_crew
   resume().
 
 } ELSE IF rm > 50 AND rm < 99 {
-  runScript("lib_reentry.ks",debug()).
+  runScript("lib_reentry.ks",debug()). // #include lib_reentry
   resume().
 
 } ELSE IF rm > 100 AND rm < 150 {
-  runScript("lib_transfer.ks",debug()).
+  runScript("lib_transfer.ks",debug()). // #include lib_transfer
   resume().
 
 } ELSE IF rm > 400 AND rm < 450 {
-  runScript("lib_rendezvous.ks",debug()).
+  runScript("lib_rendezvous.ks",debug()). // #include lib_rendezvous
   resume().
 
 } ELSE IF MOD(rm,10) = 9 AND rm > 800 AND rm < 999 {
@@ -95,7 +96,7 @@ IF rm < 0 {
   delScript("lib_launch_common.ks",debug()).
   runMode(802).
 } ELSE IF rm = 802 {
-  runScript("lib_orbit_match.ks",debug()).
+  runScript("lib_orbit_match.ks",debug()). // #include lib_orbit_match
   IF validMoonTarget() {
     LOCAL b_I IS TARGET:OBT:BODY:OBT:INCLINATION.
     LOCAL b_LAN IS TARGET:OBT:BODY:OBT:LAN.
@@ -115,7 +116,7 @@ IF rm < 0 {
   IF validMoonTarget() OR validLocalTarget() { runMode(802). }
 
 } ELSE IF rm = 811 {
-  runScript("lib_transfer.ks",debug()).
+  runScript("lib_transfer.ks",debug()). // #include lib_transfer
   IF validMoonTarget() {
     LOCAL t_B IS TARGET:OBT:BODY.
     LOCAL t_AP IS TARGET:APOAPSIS.
@@ -134,7 +135,7 @@ IF rm < 0 {
 } ELSE IF rm = 821 {
   delResume().
   IF validLocalTarget() {
-    runScript("lib_rendezvous.ks",debug()).
+    runScript("lib_rendezvous.ks",debug()). // #include lib_rendezvous
     LOCAL t IS TARGET.
     store("changeRDZ_DIST(25).").
     append("doRendezvous(831,VESSEL(" + CHAR(34) + t:NAME + CHAR(34) + "),FALSE).").
@@ -150,7 +151,7 @@ IF rm < 0 {
 
 } ELSE IF rm = 831 {
   delResume().
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   steerNormal().
   pOut("Rendezvous complete. Waiting to be boarded.").
   IF HASTARGET { SET TARGET TO "". }
@@ -163,7 +164,7 @@ IF rm < 0 {
     runMode(833).
   }
 } ELSE IF rm = 833 {
-  runScript("lib_skeep.ks",debug()).
+  runScript("lib_skeep.ks",debug()). // #include lib_skeep
   IF doSeparation() { runMode(834). }
   ELSE { runMode(839,833). }
 } ELSE IF rm = 834 {
@@ -173,7 +174,7 @@ IF rm < 0 {
 } ELSE IF rm = 851 {
   IF BODY <> KERBIN {
     delScript("lib_rendezvous.ks",debug()).
-    runScript("lib_transfer.ks",debug()).
+    runScript("lib_transfer.ks",debug()). // #include lib_transfer
     store("doTransfer(861, FALSE, KERBIN, BODY:ATM:HEIGHT * 0.6429).").
     doTransfer(861, FALSE, KERBIN, BODY:ATM:HEIGHT * 0.6429).
   } ELSE {
@@ -182,8 +183,8 @@ IF rm < 0 {
 
 } ELSE IF rm = 861 {
   IF SHIP:PERIAPSIS > (BODY:ATM:HEIGHT * 0.6429) {
-    runScript("lib_orbit_change.ks",debug()).
-    runScript("lib_dv.ks",debug()).
+    runScript("lib_orbit_change.ks",debug()). // #include lib_orbit_change
+    runScript("lib_dv.ks",debug()). // #include lib_dv
     IF doOrbitChange(TRUE,stageDV(),APOAPSIS, BODY:ATM:HEIGHT * 0.6429) {
       runMode(862).
     } ELSE {
@@ -194,7 +195,7 @@ IF rm < 0 {
 } ELSE IF rm = 862 {
   delResume().
   delScript("lib_transfer.ks",debug()).
-  runScript("lib_reentry.ks",debug()).
+  runScript("lib_reentry.ks",debug()). // #include lib_reentry
   store("doReentry(0,99).").
   doReentry(0,99).
 }

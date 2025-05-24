@@ -1,6 +1,7 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF.
 SWITCH TO 1.
-LOCAL fl TO VOLUME(1):FILES:KEYS.
-FOR f_ IN fl { VOLUME(1):DELETE(f_). }
+LOCAL craftVolume IS VOLUME(1).
+LOCAL fl TO craftVolume:FILES:KEYS.
+FOR f IN fl { craftVolume:DELETE(f). }
 LIST.
 PRINT "Clean complete".

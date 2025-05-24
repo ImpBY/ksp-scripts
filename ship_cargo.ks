@@ -15,7 +15,7 @@ GLOBAL ANG_PREC IS 0.2.
 GLOBAL ALT_PREC IS 1.0.
 GLOBAL mission_end_mode IS 888.
 
-runCraftInit().
+IF SHIP_FILE { runScript(CRAFT_FILE_RUN,debug()). }
 
 FUNCTION validMoonTarget {
   RETURN HASTARGET AND TARGET:OBT:BODY:OBT:BODY = BODY.
@@ -31,7 +31,7 @@ IF rm < 0 {
   store("runScript(" + CHAR(34) + CRAFT_FILE_RUN + CHAR(34) + "," + debug() + ").","autorun.ks").
   warpStatus(SHIP_WARP_ALLOW).
 
-  runScript("lib_launch_geo.ks",debug()).
+  runScript("lib_launch_geo.ks",debug()). // #include lib_launch_geo
 
   hudMsg("Please select a target").
   pOut("Waiting.").
@@ -53,26 +53,26 @@ IF rm < 0 {
   }
 
   delScript("lib_launch_geo.ks",debug()).
-  runScript("lib_launch_crew.ks",debug()).
+  runScript("lib_launch_crew.ks",debug()). // #include lib_launch_crew
   SET OPT_TWR TO SHIP_TWR.
 
   store("doLaunch(801," + ap + "," + az + "," + b_I + ").").
   doLaunch(801,ap,az,b_I).
 
 } ELSE IF rm > 50 AND rm < 99 {
-  runScript("lib_reentry.ks",debug()).
+  runScript("lib_reentry.ks",debug()). // #include lib_reentry
   resume().
 
 } ELSE IF rm > 100 AND rm < 150 {
-  runScript("lib_transfer.ks",debug()).
+  runScript("lib_transfer.ks",debug()). // #include lib_transfer
   resume().
 
 } ELSE IF rm > 400 AND rm < 450 {
-  runScript("lib_rendezvous.ks",debug()).
+  runScript("lib_rendezvous.ks",debug()). // #include lib_rendezvous
   resume().
 
 } ELSE IF MOD(rm,10) = 9 AND rm > 800 AND rm < 999 {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Error state. Hit abort to switch to recovery mode: " + abortMode() + ".").
   steerSun().
   WAIT UNTIL MOD(runMode(),10) <> 9.
@@ -83,7 +83,7 @@ IF rm < 0 {
   delScript("lib_launch_common.ks",debug()).
   runMode(802).
 } ELSE IF rm = 802 {
-  runScript("lib_orbit_match.ks",debug()).
+  runScript("lib_orbit_match.ks",debug()). // #include lib_orbit_match
   IF validMoonTarget() {
     LOCAL b_I IS TARGET:OBT:BODY:OBT:INCLINATION.
     LOCAL b_LAN IS TARGET:OBT:BODY:OBT:LAN.
@@ -103,7 +103,7 @@ IF rm < 0 {
   IF validMoonTarget() OR validLocalTarget() { runMode(802). }
 
 } ELSE IF rm = 811 {
-  runScript("lib_transfer.ks",debug()).
+  runScript("lib_transfer.ks",debug()). // #include lib_transfer
   IF validMoonTarget() {
     LOCAL t_B IS TARGET:OBT:BODY.
     LOCAL t_AP IS TARGET:APOAPSIS.
@@ -122,7 +122,7 @@ IF rm < 0 {
 } ELSE IF rm = 821 {
   delResume().
   IF validLocalTarget() {
-    runScript("lib_rendezvous.ks",debug()).
+    runScript("lib_rendezvous.ks",debug()). // #include lib_rendezvous
     LOCAL t IS TARGET.
     store("changeRDZ_DIST(25).").
     append("doRendezvous(831,VESSEL(" + CHAR(34) + t:NAME + CHAR(34) + "),FALSE).").
@@ -143,7 +143,7 @@ IF rm < 0 {
   runMode(mission_end_mode).
 
 } ELSE IF rm = mission_end_mode {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Mission complete. Hit abort to retry (mode " + abortMode() + ").").
   steerSun().
   WAIT UNTIL runMode() <> mission_end_mode.

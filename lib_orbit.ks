@@ -99,11 +99,11 @@ FUNCTION timeHeigth {
     LOCAL h1 IS APOAPSIS.
     LOCAL dt IS t / 2.
     LOCAL dir IS 1.
-    UNTIL ABS(h - ORBIT_H) < 1 OR dt < 1 {
+    UNTIL ABS(h1 - ORBIT_H) < 1 OR dt < 1 {
       LOCAL u_time IS TIME:SECONDS + t.
       LOCAL b IS ORBITAT(SHIP,u_time):BODY.
       LOCAL p IS posAt(SHIP,u_time).
-      LOCAL h1 IS p:MAG - b:RADIUS.
+      SET h1 TO p:MAG - b:RADIUS.
       IF h1 > ORBIT_H { SET dir TO -1. }
       ELSE { SET dir TO 1. }
       SET t to t + dt * dir.

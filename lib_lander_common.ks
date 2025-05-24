@@ -1,11 +1,11 @@
 @LAZYGLOBAL OFF. // #include init
 
-GLOBAL LND_THROTTLE IS 0.
 GLOBAL LND_G_ACC IS 0.
 GLOBAL LND_MIN_VS IS 0.
 
 setTime("LND").
 GLOBAL landerHeartBeat IS diffTime@:BIND("LND").
+SET landerHeartBeat TO landerHeartBeat().
 GLOBAL landerResetTimer IS setTime@:BIND("LND").
 
 FUNCTION landerSetMinVSpeed {
@@ -39,9 +39,9 @@ FUNCTION landerPitch {
 
 FUNCTION terrainAltAtTime {
   PARAMETER u_time.
-  LOCAL eta IS u_time - TIME:SECONDS.
+  LOCAL eta1 IS u_time - TIME:SECONDS.
   LOCAL spot IS BODY:GEOPOSITIONOF(POSITIONAT(SHIP,u_time)).
-  LOCAL new_lng IS mAngle(spot:LNG + (eta * 360 / BODY:ROTATIONPERIOD)).
+  LOCAL new_lng IS mAngle(spot:LNG + (eta1 * 360 / BODY:ROTATIONPERIOD)).
   RETURN LATLNG(spot:LAT,new_lng):TERRAINHEIGHT.
 }
 
@@ -51,7 +51,7 @@ FUNCTION stepTerrainVS {
 
   LOCAL min_vs IS init_min_vs.
   LOCAL s_count IS 1 / step.
-  LOCAL p IS BODY:ROTATIONPERIOD.
+  // LOCAL p IS BODY:ROTATIONPERIOD.
 
   UNTIL s_count > (look_ahead / step) {
     LOCAL u_time IS start_time + (s_count * step).

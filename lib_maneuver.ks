@@ -89,7 +89,7 @@ function pnode {
 function get_burntime {
   parameter dv.
 
-  update_engines.
+  update_engines().
   local thrustSum is 0.0.
   local denomSum is 0.0.
 
@@ -259,7 +259,7 @@ function launch2orbit{
   local sset is lookdirup(pitchvector:vector, ship:facing:topvector).
   lock steering to sset.
 
-when altitude > 70000 then AG9 on.
+  when altitude > 70000 then AG9 on.
 
   until altitude >= gt2 { check_stage(). }
   pOut("Navigating orbit prograde.").

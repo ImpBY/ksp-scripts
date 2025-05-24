@@ -1,6 +1,11 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
-runScript("lib_chutes.ks").
+FOR f IN LIST(
+  "lib_chutes.ks", // #include lib_chutes
+  "lib_launch_common.ks", // #include lib_launch_common
+  "lib_steer.ks" // #include lib_steer
+) { runScript(f,debug()). }
+
 steerTo().
 pOut("3").
 WAIT 1.

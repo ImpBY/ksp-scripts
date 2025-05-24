@@ -65,7 +65,6 @@ FUNCTION bestPort {
 }
 
 FUNCTION selectOurPort {
-  PARAMETER t.
   LOCAL fwd IS FACING:FOREVECTOR.
   RETURN bestPort(readyPorts(SHIP),fwd,100 * fwd).
 }
@@ -117,7 +116,7 @@ FUNCTION activeDockingPoint {
 }
 
 FUNCTION plotDockingRoute {
-  PARAMETER s_port,t_port,do_draw IS TRUE.
+  PARAMETER t_port,do_draw IS TRUE.
   LOCAL t IS t_port:SHIP.
   LOCAL ok IS TRUE.
   DOCK_POINTS:CLEAR.
@@ -166,7 +165,7 @@ FUNCTION plotDockingRoute {
       IF NOT checkRouteStep(t,S_NODE,T_NODE+POINT1+POINT2) {
         pOut("Route to second docking waypoint obstructed.").
         LOCAL p3_dist IS -4.
-        LOCAL rot_ang IS 0.
+        SET rot_ang TO 0.
         LOCK POINT3 TO p3_dist * (ANGLEAXIS(rot_ang,POINT2) * T_FACE):NORMALIZED.
         UNTIL (checkRouteStep(t,T_NODE+POINT1+POINT2,T_NODE+POINT1+POINT2+POINT3) AND
                checkRouteStep(t,S_NODE,T_NODE+POINT1+POINT2+POINT3)) OR NOT ok {
@@ -231,7 +230,7 @@ FUNCTION followDockingRoute {
   LOCAL LOCK v_diff TO SHIP:VELOCITY:ORBIT - t:VELOCITY:ORBIT.
 
   hudMsg("Docking with " + t:NAME).
-  LOCAL ok IS checkDockingOkay(t, do_draw, v_diff, TRUE).
+  SET ok TO checkDockingOkay(t, do_draw, v_diff, TRUE).
 
   UNTIL s_port:STATE <> "Ready" OR NOT ok {
     LOCAL pos_diff IS DOCK_ACTIVE_WP - S_NODE.
@@ -269,14 +268,14 @@ FUNCTION doDocking {
 
   IF NOT hasReadyPort(SHIP) OR NOT hasReadyPort(t) { RETURN FALSE. }
 
-  LOCAL s_port IS selectOurPort(t).
+  LOCAL s_port IS selectOurPort().
   LOCAL t_port IS selectTargetPort(t).
   setupPorts(s_port,t_port).
   s_port:CONTROLFROM. WAIT 0.
 
   steerTo({ RETURN -T_FACE. }).
   WAIT UNTIL steerOk().
-  SET ok TO plotDockingRoute(s_port,t_port,do_draw).
+  SET ok TO plotDockingRoute(t_port,do_draw).
 
   IF ok {
     toggleRCS(TRUE).

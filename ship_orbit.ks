@@ -18,7 +18,7 @@ GLOBAL mission_end_mode IS 888.
 GLOBAL ANG_PREC IS 0.2.
 GLOBAL ALT_PREC IS 1.0.
 
-runCraftInit().
+IF SHIP_FILE { runScript(CRAFT_FILE_RUN,debug()). }
 
 UNTIL runMode() = 99 {
 LOCAL rm IS runMode().
@@ -42,14 +42,14 @@ IF rm < 0 {
   WAIT 10.
 
 } ELSE IF MOD(rm,10) = 9 AND rm > 800 AND rm < 999 {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Error state. Hit abort to recover (mode " + abortMode() + ").").
   steerSun().
   WAIT UNTIL MOD(runMode(),10) <> 9.
 
 } ELSE IF rm = 801 {
-  runScript("lib_orbit_match.ks",debug()).
-  runScript("lib_dv.ks",debug()).
+  runScript("lib_orbit_match.ks",debug()). // #include lib_orbit_match
+  runScript("lib_dv.ks",debug()). // #include lib_dv
   IF doOrbitMatch(TRUE,stageDV(),ORBIT_INC,ORBIT_LAN,ANG_PREC) {
     runMode(802).
   } ELSE {
@@ -57,8 +57,8 @@ IF rm < 0 {
   }
 
 } ELSE IF rm = 802 {
-  runScript("lib_orbit_change.ks",debug()).
-  runScript("lib_dv.ks",debug()).
+  runScript("lib_orbit_change.ks",debug()). // #include lib_orbit_change
+  runScript("lib_dv.ks",debug()). // #include lib_dv
   IF doOrbitChange(TRUE,stageDV(),ORBIT_AP,ORBIT_PE,ORBIT_W,ALT_PREC) {
     runMode(803).
   } ELSE {
@@ -67,8 +67,8 @@ IF rm < 0 {
 
 } ELSE IF rm = 803 {
   pOut("Activate modules").
-  runScript("lib_ant.ks",debug()).
-  runScript("lib_panels.ks",debug()).
+  runScript("lib_ant.ks",debug()). // #include lib_ant
+  runScript("lib_panels.ks",debug()). // #include lib_panels
   doAnt().
   doPanels().
   runMode(804).
@@ -78,7 +78,7 @@ IF rm < 0 {
   runMode(mission_end_mode,99).
 
 } ELSE IF rm = mission_end_mode {
-  runScript("lib_steer.ks",debug()).
+  runScript("lib_steer.ks",debug()). // #include lib_steer
   hudMsg("Mission complete. Hit abort to retry (mode " + abortMode() + ").").
   steerSun().
   WAIT UNTIL runMode() <> mission_end_mode.

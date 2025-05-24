@@ -9,7 +9,7 @@ FOR f IN LIST(
   "lib_orbit.ks" // #include lib_orbit
 ) { runScript(f,debug()). }
 
-GLOBAL KSC_LAT IS -74.5576222763096 -26.
+GLOBAL KSC_LAT_S IS -74.5576222763096 -26.
 
 FUNCTION pReentry {
   LOCAL u_time IS TIME:SECONDS + 0.05.
@@ -31,7 +31,7 @@ FUNCTION pReentry {
 
 FUNCTION deorbitNode {
   removeAllNodes().
-  LOCAL lng_diff IS mAngle(KSC_LAT - SHIP:LONGITUDE).
+  LOCAL lng_diff IS mAngle(KSC_LAT_S - SHIP:LONGITUDE).
   LOCAL lng_speed IS (360/OBT:PERIOD) - (360/BODY:ROTATIONPERIOD).
   LOCAL m_time IS TIME:SECONDS + (lng_diff / lng_speed).
   LOCAL n IS nodeAlterOrbit(m_time,29000).
@@ -123,7 +123,6 @@ UNTIL rm = exit_mode {
     IF NOT isSteerOn() { steerNormal(). }
     IF steerOk() OR ALTITUDE < alt_atm { runMode(66). }
   } ELSE IF rm = 66 {
-    LOCAL done IS FALSE.
     IF stages > 0 {
       IF STAGE:READY {
         doStage().

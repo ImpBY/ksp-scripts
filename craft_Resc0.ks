@@ -1,4 +1,4 @@
-@LAZYGLOBAL OFF. // #include init
+@LAZYGLOBAL OFF. IF NOT EXISTS("1:/init.ks") { COPYPATH("0:/init.ks","1:/init.ks"). }. RUNONCEPATH("1:/init.ks"). // #include init
 
 GLOBAL NEW_NAME IS "Resc0".
 GLOBAL ORBIT_LOW IS MAX(BODY:ATM:HEIGHT * 1.05, 74000).
@@ -15,6 +15,4 @@ GLOBAL ORBIT_LOW IS 100000.
 GLOBAL ANG_PREC IS 0.002.
 GLOBAL ALT_PREC IS 0.010.
 
-rcsOn().
-sysUpdate(NEW_NAME).
-runScript("ship_rescue.ks",debug()).
+GLOBAL SHIP_FILE IS "ship_rescue.ks".
